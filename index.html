@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="./src/js/gameManager.js"></script>
+	<script src="./src/js/Tile.js"></script>
 	<title>15 Game</title>
 
 
@@ -10,7 +11,10 @@
 </head>
 <body>
 	<h1>15 Game</h1>
-
+	<script>
+		const t = new game15.Tile({label: '4'});
+		document.body.appendChild(t.container);
+	</script>
 
 </body>
 </html>
