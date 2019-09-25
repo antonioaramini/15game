@@ -29,10 +29,14 @@
 
 	Tile.prototype._render = function() {
 		this.container = document.createElement('div');
-		if (this.params.label != undefined) {
+		if (this.params.label !== undefined) {
 			this.container.textContent = this.params.label;
 		}
 		this.container.classList.add(CSS_CLASS);
+	};
+
+	Tile.prototype.getNumber = function() {
+		return (this.params !== undefined && this.params.label !== undefined) ? this.params.label : null;
 	};
 
 
