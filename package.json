@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/antonioaramini/15game#readme",
   "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
     "jasmine-core": "^3.5.0",
     "karma": "^4.3.0",
     "karma-jasmine": "^2.0.1"
