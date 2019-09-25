@@ -1,0 +1,4 @@
+-Board tests
+-Tile tests (new API for getNumber)
+-CSS to render properly
+-Add events to handle input
