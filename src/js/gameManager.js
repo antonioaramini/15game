@@ -1,6 +1,6 @@
 
 if (typeof game15 === 'undefined'){
-	window.game15 = {};
+	var game15 = {};
 }
 
 

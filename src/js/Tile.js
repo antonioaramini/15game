@@ -17,9 +17,10 @@
 	 * @constructor
 	 */
 	const Tile = function(params) {
-		console.log('Tile constructor');
-
-		console.log(params['label']);
+		if (params === undefined) {
+			return;
+			// alternatively we can throw an exception
+		}
 		this.params = params;
 		this._render();
 	};
@@ -28,7 +29,9 @@
 
 	Tile.prototype._render = function() {
 		this.container = document.createElement('div');
-		this.container.textContent = this.params.label;
+		if (this.params.label != undefined) {
+			this.container.textContent = this.params.label;
+		}
 		this.container.classList.add(CSS_CLASS);
 	};
 

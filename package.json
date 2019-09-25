@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/antonioaramini/15game/issues"
   },
-  "homepage": "https://github.com/antonioaramini/15game#readme"
+  "homepage": "https://github.com/antonioaramini/15game#readme",
+  "devDependencies": {
+    "jasmine-core": "^3.5.0",
+    "karma": "^4.3.0",
+    "karma-jasmine": "^2.0.1"
+  }
 }
