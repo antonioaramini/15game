@@ -9,6 +9,8 @@
 
 	'use strict';
 
+	const CSS_CLASS = 'tile';
+
 	/**
 	 *
 	 * @param {game15.Tile.params} params
@@ -27,6 +29,7 @@
 	Tile.prototype._render = function() {
 		this.container = document.createElement('div');
 		this.container.textContent = this.params.label;
+		this.container.classList.add(CSS_CLASS);
 	};
 
 
