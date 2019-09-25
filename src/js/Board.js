@@ -7,7 +7,6 @@
 
 	const Board = function(params) {
 
-		this._createRandomMatrix();
 		this._render();
 	};
 
@@ -16,11 +15,19 @@
 
 	Board.prototype._render = function() {
 		this.container = document.createElement('div');
+		const randomNumbersArray = this._createRandomNumbersArray();
+
+		this.matrix = [];
 		for(let row = 0; row < BOARD_ROWS; row++) {
+			this.matrix[row] = [];
 			for(let column = 0; column < BOARD_COLUMNS; column++) {
-				this.matrix[row][column].htmlElement = document.createElement('div');
+				const label = randomNumbersArray.shift();
+				this.matrix[row][column] = this._createNewMatrixElement(document.createElement('div'),
+					(label === BOARD_ROWS*BOARD_COLUMNS) ? new game15.Tile() : new game15.Tile({label: label}));
+
 				this.container.appendChild(this.matrix[row][column].htmlElement);
-				if (this.matrix[row][column].tileObject !== null) {
+
+				if (this.matrix[row][column].tileObject.container !== undefined) {
 					this.matrix[row][column].htmlElement.appendChild(this.matrix[row][column].tileObject.container);
 				}
 			}
@@ -28,22 +35,13 @@
 		}
 	};
 
-	Board.prototype._createRandomMatrix = function() {
-		this.matrix = [];
-		let randomArray = [];
+	Board.prototype._createRandomNumbersArray = function() {
+		let randomNumbersArray = [];
 		for(let i=0; i < BOARD_ROWS * BOARD_COLUMNS; i++) {
-			randomArray[i] = i + 1;
+			randomNumbersArray[i] = i + 1;
 		}
-		randomArray.sort(() => Math.random() - 0.5);
-		alert(randomArray);
-		for(let row = 0; row < BOARD_ROWS; row++) {
-			this.matrix[row] = [];
-			for (let column = 0; column < BOARD_COLUMNS; column++) {
-				const label = randomArray[row * BOARD_COLUMNS + column].toString();
-				this.matrix[row][column] = (label === '16') ? this._createNewMatrixElement(undefined, new game15.Tile())
-					: this._createNewMatrixElement(undefined, new game15.Tile({label: label}));
-			}
-		}
+		randomNumbersArray.sort(() => Math.random() - 0.5);
+		return randomNumbersArray;
 	};
 
 	Board.prototype._createNewMatrixElement = function(htmlElement, tileObject) {
