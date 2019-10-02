@@ -9,7 +9,7 @@
 
 	'use strict';
 
-	const CSS_CLASS = 'tile';
+	const CSS_CLASS = 'game15_Tile';
 
 	/**
 	 *

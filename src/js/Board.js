@@ -2,6 +2,8 @@
 
 	'use strict';
 
+	const CSS_BOARD = 'game15_Board';
+
 	const BOARD_ROWS = 4;
 	const BOARD_COLUMNS = 4;
 
@@ -15,6 +17,7 @@
 
 	Board.prototype._render = function() {
 		this.container = document.createElement('div');
+		this.container.classList.add(CSS_BOARD);
 		const randomNumbersArray = this._createRandomNumbersArray();
 
 		this.matrix = [];

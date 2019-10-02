@@ -1,0 +1,7 @@
+.game15_Board {
+	display: grid;
+	grid-template-columns: repeat(var(--grid-dimension), 1fr);
+	grid-template-rows: repeat(var(--grid-dimension), 1fr);
+	grid-gap: var(--space-between-tiles) var(--space-between-tiles);
+}
+
