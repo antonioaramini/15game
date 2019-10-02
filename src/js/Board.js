@@ -4,8 +4,7 @@
 
 	const CSS_BOARD = 'game15_Board';
 
-	const BOARD_ROWS = 4;
-	const BOARD_COLUMNS = 4;
+	const BOARD_DIMENSION = 4;
 
 	const Board = function(params) {
 
@@ -21,12 +20,12 @@
 		const randomNumbersArray = this._createRandomNumbersArray();
 
 		this.matrix = [];
-		for(let row = 0; row < BOARD_ROWS; row++) {
+		for(let row = 0; row < BOARD_DIMENSION; row++) {
 			this.matrix[row] = [];
-			for(let column = 0; column < BOARD_COLUMNS; column++) {
+			for(let column = 0; column < BOARD_DIMENSION; column++) {
 				const label = randomNumbersArray.shift();
 				this.matrix[row][column] = this._createNewMatrixElement(document.createElement('div'),
-					(label === BOARD_ROWS*BOARD_COLUMNS) ? new game15.Tile() : new game15.Tile({label: label}));
+					(label === BOARD_DIMENSION*BOARD_DIMENSION) ? new game15.Tile() : new game15.Tile({label: label}));
 
 				this.container.appendChild(this.matrix[row][column].htmlElement);
 
@@ -40,7 +39,7 @@
 
 	Board.prototype._createRandomNumbersArray = function() {
 		let randomNumbersArray = [];
-		for(let i=0; i < BOARD_ROWS * BOARD_COLUMNS; i++) {
+		for(let i=0; i < BOARD_DIMENSION * BOARD_DIMENSION; i++) {
 			randomNumbersArray[i] = i + 1;
 		}
 		randomNumbersArray.sort(() => Math.random() - 0.5);

@@ -1,5 +1,4 @@
 -Board tests
--Tile tests (new API for getNumber)
 -CSS to render properly
 -Assign CSS variable from js for Board dimension
 -Add events to handle input

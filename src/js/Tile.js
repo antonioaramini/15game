@@ -9,7 +9,7 @@
 
 	'use strict';
 
-	const CSS_CLASS = 'game15_Tile';
+	const CSS_TILE = 'game15_Tile';
 
 	/**
 	 *
@@ -32,7 +32,7 @@
 		if (this.params.label !== undefined) {
 			this.container.textContent = this.params.label;
 		}
-		this.container.classList.add(CSS_CLASS);
+		this.container.classList.add(CSS_TILE);
 	};
 
 	Tile.prototype.getNumber = function() {
