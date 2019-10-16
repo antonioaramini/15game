@@ -3,5 +3,7 @@
 	grid-template-columns: repeat(var(--grid-dimension), 1fr);
 	grid-template-rows: repeat(var(--grid-dimension), 1fr);
 	grid-gap: var(--space-between-tiles) var(--space-between-tiles);
+	margin-left: var(--board-lateral-margin);
+	margin-right: var(--board-lateral-margin);
 }
 

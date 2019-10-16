@@ -1,4 +1,7 @@
 :root {
 	--grid-dimension: 4;
 	--space-between-tiles: 5px;
+	--board-lateral-margin: 10%;
+	--tile-content-padding: 20%;
+	--tile-border-size: 0.3em;
 }

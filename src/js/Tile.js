@@ -11,6 +11,8 @@
 
 	const CSS_TILE = 'game15_Tile';
 
+	const TILE_CUSTOM_EVENT='tileClicked';
+
 	/**
 	 *
 	 * @param {game15.Tile.params} params
@@ -35,10 +37,18 @@
 		this.container.classList.add(CSS_TILE);
 	};
 
+	Tile.prototype.attachCustomEventDispatcherOnClick = function(eventName, detailObject) {
+		const event = new CustomEvent(eventName, {bubbles: true, detail: detailObject});
+		this.container.addEventListener('click',function() {
+			this.container.dispatchEvent(event);
+		}.bind(this))
+	};
+
 	Tile.prototype.getNumber = function() {
 		return (this.params !== undefined && this.params.label !== undefined) ? this.params.label : null;
 	};
 
 
 	game15.Tile = Tile;
+	game15.Tile.TILE_CUSTOM_EVENT = TILE_CUSTOM_EVENT;
 })();

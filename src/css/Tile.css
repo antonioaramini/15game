@@ -1,4 +1,5 @@
 .game15_Tile{
-	border: 2px solid black;
+	border: var(--tile-border-size) solid black;
 	text-align: center;
+	padding: var(--tile-content-padding);
 }
