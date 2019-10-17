@@ -25,6 +25,7 @@
 		}
 		this.params = params;
 		this._render();
+		this._attachEvents();
 	};
 
 	Tile.prototype.container = undefined;
@@ -37,11 +38,12 @@
 		this.container.classList.add(CSS_TILE);
 	};
 
-	Tile.prototype.attachCustomEventDispatcherOnClick = function(eventName, detailObject) {
-		const event = new CustomEvent(eventName, {bubbles: true, detail: detailObject});
-		this.container.addEventListener('click',function() {
-			this.container.dispatchEvent(event);
-		}.bind(this))
+	Tile.prototype._attachEvents = function() {
+		const clickEvent = new Event(TILE_CUSTOM_EVENT);
+		this.container.addEventListener('click', function() {
+			this.container.dispatchEvent(clickEvent)
+		}.bind(this));
+
 	};
 
 	Tile.prototype.getNumber = function() {

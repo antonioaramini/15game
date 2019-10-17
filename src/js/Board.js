@@ -9,7 +9,6 @@
 	const Board = function(params) {
 
 		this._render();
-		this._addTileCustomEventListener();
 	};
 
 	Board.prototype.container = undefined;
@@ -19,7 +18,8 @@
 	Board.prototype._render = function() {
 		this.container = document.createElement('div');
 		this.container.classList.add(CSS_BOARD);
-		const randomNumbersArray = this._createRandomNumbersArray();
+		this.container.style.setProperty('--grid-dimension', BOARD_DIMENSION);
+		const randomNumbersArray = game15.createRandomSolvableConfigurationArray(BOARD_DIMENSION*BOARD_DIMENSION);
 
 		this.matrix = [];
 		for(let row = 0; row < BOARD_DIMENSION; row++) {
@@ -31,36 +31,20 @@
 
 				this.container.appendChild(this.matrix[row][column].htmlElement);
 
-				if (tileObject.container !== undefined) {
+				if (tileObject.getNumber() !== null) {
 					this.matrix[row][column].htmlElement.appendChild(tileObject.container);
-					tileObject.attachCustomEventDispatcherOnClick(game15.Tile.TILE_CUSTOM_EVENT, {tileObject: tileObject});
+					tileObject.container.addEventListener(game15.Tile.TILE_CUSTOM_EVENT, function() {
+						const tilePosition = this._getTilePosition(tileObject);
+						if (this._isMovableTile(tilePosition)) {
+							this._moveTile(tilePosition);
+						}
+					}.bind(this));
 				} else {
 					this.emptyTilePosition.row = row;
 					this.emptyTilePosition.column = column;
 				}
 			}
-
 		}
-	};
-
-	Board.prototype._createRandomNumbersArray = function() {
-		let randomNumbersArray = [];
-		do {
-			for (let i = 0; i < BOARD_DIMENSION * BOARD_DIMENSION; i++) {
-				randomNumbersArray[i] = i + 1;
-			}
-			randomNumbersArray.sort(() => Math.random() - 0.5);
-		} while (!this.isSolvable(randomNumbersArray));
-		return randomNumbersArray;
-	};
-
-	Board.prototype._addTileCustomEventListener = function() {
-		this.container.addEventListener(game15.Tile.TILE_CUSTOM_EVENT, function(event) {
-			const tilePosition = this._getTilePosition(event.detail.tileObject);
-			if (this._isMovableTile(tilePosition)) {
-				this._moveTile(tilePosition);
-			}
-		}.bind(this));
 	};
 
 	Board.prototype._getTilePosition = function(tileObject) {
@@ -94,30 +78,6 @@
 
 	Board.prototype._createNewMatrixElement = function(htmlElement, tileObject) {
 		return {htmlElement: htmlElement, tileObject: tileObject};
-	};
-
-	Board.prototype.isSolvable = function(randomNumbersArray) {
-		return this._getConfigurationSolvabilitySum(randomNumbersArray) % 2 === 0;
-	};
-
-	Board.prototype._getConfigurationSolvabilitySum = function (randomNumbersArray) {
-		const countedSet = new Set();
-		let sum = 0;
-		for (let k = 0; k < BOARD_DIMENSION * BOARD_DIMENSION; k++) {
-			let smallerNumbers = randomNumbersArray[k] - 1;
-			for (let i = randomNumbersArray[k] - 1; i > 0; i--) {
-				if (countedSet.has(i)) {
-					smallerNumbers--;
-				}
-			}
-			countedSet.add(randomNumbersArray[k]);
-			sum += smallerNumbers;
-			if (randomNumbersArray[k] === BOARD_DIMENSION * BOARD_DIMENSION) {
-				const emptyTilePosition = {row: Math.floor(k / BOARD_DIMENSION), column: k % BOARD_DIMENSION};
-				sum += BOARD_DIMENSION - 1 - emptyTilePosition.row + BOARD_DIMENSION - 1 - emptyTilePosition.column;
-			}
-		}
-		return sum;
 	};
 
 	Board.prototype.isBaseConfiguration = function() {
