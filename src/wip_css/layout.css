@@ -1,0 +1,77 @@
+.game15_header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.game15_content {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.game15_Board {
+	width: 60%;
+	height: 80%;
+	background-color: lightgray;
+	border: 4px solid black;
+}
+
+.game15_sidebarContainer {
+	position: absolute;
+	height: 100%;
+	right: 0;
+	width: 15%;
+	display: flex;
+	align-items: flex-start;
+}
+
+html {
+	height: 100%;
+}
+
+.game15_startButton {
+	min-width: 80px;
+	min-height: 50px;
+	border-radius: 20%;
+	background-color: lightskyblue;
+	color: white;
+	font-weight: bold;
+	box-shadow: 5px 5px grey;
+	box-sizing: border-box;
+}
+
+.game15_startButton:hover {
+	background-color: red;
+}
+
+.game15_startButton:focus {
+	outline: none;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.game15_pageTitle {
+	text-align: center;
+}
+
+.game15_resetButton {
+
+}
+
+.game15_statsButton {
+
+}
+
+.game15_sidebar {
+	background-color: aliceblue;
+	flex-grow: 1;
+	height: 100%;
+}

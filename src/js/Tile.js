@@ -41,7 +41,7 @@
 	Tile.prototype._attachEvents = function() {
 		const clickEvent = new Event(TILE_CUSTOM_EVENT);
 		this.container.addEventListener('click', function() {
-			this.container.dispatchEvent(clickEvent)
+			this.container.dispatchEvent(clickEvent);
 		}.bind(this));
 
 	};
